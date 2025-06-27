@@ -1,9 +1,30 @@
-import React from "react";
 import VerifiedIcon from "../../assets/verified.png";
-import TrendingCollection from "../../assets/trending-collection.avif";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
+import TrendingSkelton from "../ui/TrendingSkelton";
 
 export default function Trending() {
+  const [trending, setTrending] = useState([]);
+
+  useEffect(() => {
+    const fetchTrending = async () => {
+      try {
+        const response = await axios.get(
+          "https://remote-internship-api-production.up.railway.app/trendingNFTs"
+        );
+
+        const { data } = response.data;
+
+        setTrending(data);
+      } catch (error) {
+        console.error("Error fetching trending:", error);
+      }
+    };
+    fetchTrending();
+  }, []);
+
   return (
     <section id="trending">
       <div className="container">
@@ -27,41 +48,47 @@ export default function Trending() {
                 <div className="trending-column__header__price">Volume</div>
               </div>
               <div className="trending-column__body">
-                {new Array(5).fill(0).map((_, index) => (
-                  <Link
-                    to={"/collection"}
-                    key={index}
-                    className="trending-collection"
-                  >
-                    <div className="trending-collection__rank">1</div>
-                    <div className="trending-collection__collection">
-                      <figure className="trending-collection__img__wrapper">
-                        <img
-                          src={TrendingCollection}
-                          alt=""
-                          className="trending-collection__img"
-                        />
-                      </figure>
-                      <div className="trending-collection__name">
-                        Bored Ape Yacht Club
-                      </div>
-                      <img
-                        src={VerifiedIcon}
-                        className="trending-collection__verified"
-                      />
-                    </div>
-                    <div className="trending-collection__price">
-                      <span className="trending-collection__price__span">
-                        11.55 ETH
-                      </span>
-                    </div>
-                    <div className="trending-collection__volume">
-                      <span className="trending-collection__volume__span">
-                        2M ETH
-                      </span>
-                    </div>
-                  </Link>
-                ))}
+                {trending?.length > 0
+                  ? trending?.slice(0, 5).map((collection) => (
+                      <Link
+                        to={`/collection/${collection?.collectionId}`}
+                        key={collection?.collectionId}
+                        className="trending-collection"
+                      >
+                        <div className="trending-collection__rank">
+                          {collection?.rank}
+                        </div>
+                        <div className="trending-collection__collection">
+                          <figure className="trending-collection__img__wrapper">
+                            <img
+                              src={collection?.imageLink}
+                              alt=""
+                              className="trending-collection__img"
+                            />
+                          </figure>
+                          <div className="trending-collection__name">
+                            {collection?.title}
+                          </div>
+                          <img
+                            src={VerifiedIcon}
+                            className="trending-collection__verified"
+                          />
+                        </div>
+                        <div className="trending-collection__price">
+                          <span className="trending-collection__price__span">
+                            {parseInt(collection?.floor).toFixed(2)} ETH
+                          </span>
+                        </div>
+                        <div className="trending-collection__volume">
+                          <span className="trending-collection__volume__span">
+                            {collection?.totalVolume}
+                          </span>
+                        </div>
+                      </Link>
+                    ))
+                  : Array.from({ length: 5 }).map((_, index) => (
+                      <TrendingSkelton key={index} rank={index + 1} />
+                    ))}
               </div>
             </div>
             <div className="trending-column">
@@ -76,41 +103,47 @@ export default function Trending() {
                 <div className="trending-column__header__price">Volume</div>
               </div>
               <div className="trending-column__body">
-                {new Array(5).fill(0).map((_, index) => (
-                  <Link
-                    to={"/collection"}
-                    key={index}
-                    className="trending-collection"
-                  >
-                    <div className="trending-collection__rank">1</div>
-                    <div className="trending-collection__collection">
-                      <figure className="trending-collection__img__wrapper">
-                        <img
-                          src={TrendingCollection}
-                          alt=""
-                          className="trending-collection__img"
-                        />
-                      </figure>
-                      <div className="trending-collection__name">
-                        Bored Ape Yacht Club
-                      </div>
-                      <img
-                        src={VerifiedIcon}
-                        className="trending-collection__verified"
-                      />
-                    </div>
-                    <div className="trending-collection__price">
-                      <span className="trending-collection__price__span">
-                        11.55 ETH
-                      </span>
-                    </div>
-                    <div className="trending-collection__volume">
-                      <span className="trending-collection__volume__span">
-                        2M ETH
-                      </span>
-                    </div>
-                  </Link>
-                ))}
+                {trending?.length > 0
+                  ? trending?.slice(5).map((collection) => (
+                      <Link
+                        to={`/collection/${collection?.collectionId}`}
+                        key={collection?.collectionId}
+                        className="trending-collection"
+                      >
+                        <div className="trending-collection__rank">
+                          {collection?.rank}
+                        </div>
+                        <div className="trending-collection__collection">
+                          <figure className="trending-collection__img__wrapper">
+                            <img
+                              src={collection?.imageLink}
+                              alt=""
+                              className="trending-collection__img"
+                            />
+                          </figure>
+                          <div className="trending-collection__name">
+                            {collection?.title}
+                          </div>
+                          <img
+                            src={VerifiedIcon}
+                            className="trending-collection__verified"
+                          />
+                        </div>
+                        <div className="trending-collection__price">
+                          <span className="trending-collection__price__span">
+                            {parseInt(collection?.floor).toFixed(2)} ETH
+                          </span>
+                        </div>
+                        <div className="trending-collection__volume">
+                          <span className="trending-collection__volume__span">
+                            {collection?.totalVolume}
+                          </span>
+                        </div>
+                      </Link>
+                    ))
+                  : Array.from({ length: 5 }).map((_, index) => (
+                      <TrendingSkelton key={index} rank={index + 1 + 5} />
+                    ))}
               </div>
             </div>
           </div>
