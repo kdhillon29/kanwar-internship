@@ -1,29 +1,10 @@
 import VerifiedIcon from "../../assets/verified.png";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import axios from "axios";
-import { useEffect } from "react";
 import TrendingSkelton from "../ui/TrendingSkelton";
+import useFetchData from "../../hooks/useFetchData";
 
 export default function Trending() {
-  const [trending, setTrending] = useState([]);
-
-  useEffect(() => {
-    const fetchTrending = async () => {
-      try {
-        const response = await axios.get(
-          "https://remote-internship-api-production.up.railway.app/trendingNFTs"
-        );
-
-        const { data } = response.data;
-
-        setTrending(data);
-      } catch (error) {
-        console.error("Error fetching trending:", error);
-      }
-    };
-    fetchTrending();
-  }, []);
+  const { data: trending } = useFetchData("/api/trendingNFTs");
 
   return (
     <section id="trending">
@@ -76,7 +57,7 @@ export default function Trending() {
                         </div>
                         <div className="trending-collection__price">
                           <span className="trending-collection__price__span">
-                            {parseInt(collection?.floor).toFixed(2)} ETH
+                            {parseFloat(collection?.floor).toFixed(2)} ETH
                           </span>
                         </div>
                         <div className="trending-collection__volume">
@@ -131,7 +112,7 @@ export default function Trending() {
                         </div>
                         <div className="trending-collection__price">
                           <span className="trending-collection__price__span">
-                            {parseInt(collection?.floor).toFixed(2)} ETH
+                            {parseFloat(collection?.floor).toFixed(2)} ETH
                           </span>
                         </div>
                         <div className="trending-collection__volume">
