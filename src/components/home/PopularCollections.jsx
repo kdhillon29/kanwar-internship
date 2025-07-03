@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import useFetchData from "../../hooks/useFetchData";
 import NewCollectionSkelton from "../ui/NewCollectionSkelton";
 import { SwiperSlide } from "swiper/react";
-import NewCollectionSwiper from "./CollectionCarousel";
+import CollectionSwiper from "./CollectionCarousel";
 
 export default function PopularCollections() {
   const { data: popularCollections } = useFetchData("/api/popularCollections");
@@ -13,7 +13,7 @@ export default function PopularCollections() {
         <div className="row">
           <h2 className="popular-collections__title">Popular Collections</h2>
           <div className="popular-collections__body">
-            <NewCollectionSwiper>
+            <CollectionSwiper>
               {popularCollections?.map((collection) => (
                 <div
                   className="collection-column"
@@ -23,7 +23,7 @@ export default function PopularCollections() {
                     to={`/collection/${collection?.collectionId}`}
                     className="collection"
                   >
-                    <SwiperSlide>
+                    <SwiperSlide key={collection?.collectionId}>
                       <img
                         src={collection?.imageLink}
                         alt=""
@@ -56,7 +56,7 @@ export default function PopularCollections() {
                   </Link>
                 </div>
               ))}
-            </NewCollectionSwiper>
+            </CollectionSwiper>
           </div>
         </div>
       </div>
@@ -67,15 +67,15 @@ export default function PopularCollections() {
         <div className="row">
           <h2 className="popular-collections__title">Popular Collections</h2>
           <div className="popular-collections__body">
-            <NewCollectionSwiper>
+            <CollectionSwiper>
               {new Array(9).fill(0).map((_, index) => (
                 <div className="collection-column" key={index}>
-                  <SwiperSlide>
+                  <SwiperSlide key={index}>
                     <NewCollectionSkelton />
                   </SwiperSlide>
                 </div>
               ))}
-            </NewCollectionSwiper>
+            </CollectionSwiper>
           </div>
         </div>
       </div>
