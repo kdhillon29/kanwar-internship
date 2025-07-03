@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import useFetchData from "../../hooks/useFetchData";
 import NewCollectionSkelton from "../ui/NewCollectionSkelton";
 import { SwiperSlide } from "swiper/react";
-import NewCollectionSwiper from "./NewCollectionCarousel";
+import NewCollectionSwiper from "./CollectionCarousel";
 
 export default function NewCollections() {
   const { data: newCollections } = useFetchData("/api/newCollections");
