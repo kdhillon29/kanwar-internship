@@ -67,11 +67,15 @@ export default function NewCollections() {
         <div className="row">
           <h2 className="new-collections__title">New Collections</h2>
           <div className="new-collections__body">
-            {new Array(6).fill(0).map((_, index) => (
-              <div className="collection-column" key={index}>
-                <NewCollectionSkelton />
-              </div>
-            ))}
+            <NewCollectionSwiper>
+              {new Array(9).fill(0).map((_, index) => (
+                <div className="collection-column" key={index}>
+                  <SwiperSlide>
+                    <NewCollectionSkelton />
+                  </SwiperSlide>
+                </div>
+              ))}
+            </NewCollectionSwiper>
           </div>
         </div>
       </div>

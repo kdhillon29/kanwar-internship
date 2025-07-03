@@ -18,14 +18,20 @@ export default function NewCollectionSwiper({ children }) {
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={20}
       navigation
+      loop
       slidesPerView={5}
       breakpoints={{
         // when window width is >= 320px
-        250: {
+        320: {
           slidesPerView: 2,
           spaceBetween: 20,
         },
-        // when window width is >= 480px
+        // when window width is >= 425px
+        425: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+        // when window width is >= 768px
         768: {
           slidesPerView: 4,
           spaceBetween: 30,
@@ -36,10 +42,6 @@ export default function NewCollectionSwiper({ children }) {
           spaceBetween: 40,
         },
       }}
-      //   pagination={{ clickable: true }}
-      //   scrollbar={{ draggable: true }}
-      //   onSwiper={(swiper) => console.log(swiper)}
-      //   onSlideChange={() => console.log("slide change")}
     >
       {children}
     </Swiper>
