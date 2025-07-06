@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import CollectionHeader from "../components/collection/CollectionHeader";
 import CollectionInfo from "../components/collection/CollectionInfo";
 import CollectionItems from "../components/collection/CollectionItems";

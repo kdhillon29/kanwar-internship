@@ -33,9 +33,13 @@ export default function CollectionSwiper({ children }) {
           slidesPerView: 4,
           spaceBetween: 10,
         },
-        // when window width is >= 640px
+        // when window width is >= 1024px
         1024: {
           slidesPerView: 5,
+          spaceBetween: 10,
+        },
+        1280: {
+          slidesPerView: 6,
           spaceBetween: 10,
         },
       }}

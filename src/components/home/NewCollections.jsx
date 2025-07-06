@@ -3,6 +3,7 @@ import useFetchData from "../../hooks/useFetchData";
 import NewCollectionSkelton from "../ui/NewCollectionSkelton";
 import { SwiperSlide } from "swiper/react";
 import CollectionSwiper from "./CollectionCarousel";
+import CollectionCard from "../ui/CollectionCard";
 
 export default function NewCollections() {
   const { data: newCollections } = useFetchData("/api/newCollections");
@@ -15,46 +16,17 @@ export default function NewCollections() {
           <div className="new-collections__body">
             <CollectionSwiper>
               {newCollections?.map((collection) => (
-                <div
-                  className="collection-column"
+                <SwiperSlide
                   key={collection?.collectionId}
+                  className="collection-column"
                 >
                   <Link
                     to={`/collection/${collection?.collectionId}`}
-                    className="collection"
+                    className="collection "
                   >
-                    <SwiperSlide key={collection?.collectionId}>
-                      <img
-                        src={collection?.imageLink}
-                        alt=""
-                        className="collection__img"
-                      />
-                      <div className="collection__info">
-                        <h3 className="collection__name">
-                          {collection?.title}
-                        </h3>
-                        <div className="collection__stats">
-                          <div className="collection__stat">
-                            <span className="collection__stat__label">
-                              Floor
-                            </span>
-                            <span className="collection__stat__data">
-                              {parseFloat(collection?.floor).toFixed(2)} ETH
-                            </span>
-                          </div>
-                          <div className="collection__stat">
-                            <span className="collection__stat__label">
-                              Total Volume
-                            </span>
-                            <span className="collection__stat__data">
-                              {collection?.totalVolume}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
+                    <CollectionCard collection={collection} />
                   </Link>
-                </div>
+                </SwiperSlide>
               ))}
             </CollectionSwiper>
           </div>
@@ -69,11 +41,9 @@ export default function NewCollections() {
           <div className="new-collections__body">
             <CollectionSwiper>
               {new Array(9).fill(0).map((_, index) => (
-                <div className="collection-column" key={index}>
-                  <SwiperSlide key={index}>
-                    <NewCollectionSkelton />
-                  </SwiperSlide>
-                </div>
+                <SwiperSlide key={index} className="collection-column">
+                  <NewCollectionSkelton />
+                </SwiperSlide>
               ))}
             </CollectionSwiper>
           </div>
