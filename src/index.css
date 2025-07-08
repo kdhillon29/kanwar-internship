@@ -607,8 +607,8 @@ html {
 }
 
 .collection__stat__data {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 1px;
+  font-weight: 600;
   line-height: 24px;
 }
 
@@ -1628,13 +1628,13 @@ USER PAGE
 
 @media (max-width: 1440px) {
   .item-column {
-    width: calc((100% / 4) - 16px + (16px / 4));
+    width: calc((100% / 5) - 16px + (16px / 5));
   }
 }
 
 @media (max-width: 1200px) {
   .collection-column {
-    width: calc((100% / 4) - 16px + (16px / 4));
+    width: calc((100% / 5) - 16px + (16px / 5));
   }
 
   .footer__top {
