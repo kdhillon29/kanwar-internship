@@ -16,9 +16,9 @@ import { useState } from "react";
 
 export default function ItemPage() {
   const { id } = useParams();
+  const { data: itemData, error } = useFetchData(`/api/Item/${id}`);
   const [expiryDateCountdown, setExpiryDateCountdown] = useState("");
   const [item, setItem] = useState(null);
-  const { data: itemData, error } = useFetchData(`/api/Item/${id}`);
 
   function getExpiryDateCountdown() {
     const date = new Date(item?.expiryDate);
@@ -72,7 +72,7 @@ export default function ItemPage() {
   }
   return (
     <>
-      {item?.collectionId ? (
+      {item?.id === id ? (
         <section id="item-info">
           <div className="container">
             <div className="row item-page__row">
