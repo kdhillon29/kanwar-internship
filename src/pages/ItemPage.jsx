@@ -12,15 +12,18 @@ import { Link } from "react-router-dom";
 import useFetchData from "../hooks/useFetchData";
 import { useParams } from "react-router-dom";
 import Skeleton from "../components/ui/Skeleton";
+import { useState } from "react";
 
 export default function ItemPage() {
   const { id } = useParams();
-  const { data: item, error } = useFetchData(`/api/Item/${id}`);
+  const [expiryDateCountdown, setExpiryDateCountdown] = useState("");
+  const [item, setItem] = useState(null);
+  const { data: itemData, error } = useFetchData(`/api/Item/${id}`);
 
-  function getExpiryDate() {
+  function getExpiryDateCountdown() {
     const date = new Date(item?.expiryDate);
     let expiryDateString = "";
-    const now = new Date();
+    const now = Date.now();
     const diff = date - now;
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     if (days > 0) {
@@ -41,10 +44,17 @@ export default function ItemPage() {
     return expiryDateString;
   }
 
-  console.log("item", item);
+  useEffect(() => {
+    setItem(itemData);
+  }, [itemData, id]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [id]);
+    const interval = setInterval(() => {
+      setExpiryDateCountdown(getExpiryDateCountdown());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [id, item]);
 
   if (error) {
     return (
@@ -62,7 +72,7 @@ export default function ItemPage() {
   }
   return (
     <>
-      {item ? (
+      {item?.collectionId ? (
         <section id="item-info">
           <div className="container">
             <div className="row item-page__row">
@@ -139,7 +149,7 @@ export default function ItemPage() {
                 <div className="item-page__sale">
                   <div className="item-page__sale__header">
                     <div className="green-pulse"></div>
-                    <span>Sale ends in {getExpiryDate()}</span>
+                    <span>Sale ends in {expiryDateCountdown}</span>
                   </div>
                   <div className="item-page__sale__body">
                     <span className="item-page__sale__label">
