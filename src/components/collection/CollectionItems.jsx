@@ -1,10 +1,10 @@
-import { faEye } from "@fortawesome/free-regular-svg-icons";
+// import { faEye } from "@fortawesome/free-regular-svg-icons";
 import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import CollectionSkeleton from "../ui/NewCollectionSkelton";
+import CollectionSkeleton from "../ui/CollectionSkelton";
 import Skeleton from "../ui/Skeleton";
 
 /* eslint react/prop-types: 0 */

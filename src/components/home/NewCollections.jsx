@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import useFetchData from "../../hooks/useFetchData";
-import NewCollectionSkelton from "../ui/NewCollectionSkelton";
+import NewCollectionSkelton from "../ui/CollectionSkelton";
 import { SwiperSlide } from "swiper/react";
 import CollectionSwiper from "./CollectionCarousel";
 import CollectionCard from "../ui/CollectionCard";

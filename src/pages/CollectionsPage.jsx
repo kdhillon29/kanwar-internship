@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import useFetchData from "../hooks/useFetchData";
-import NewCollectionSkelton from "../components/ui/NewCollectionSkelton";
+import NewCollectionSkelton from "../components/ui/CollectionSkelton";
 import CollectionCard from "../components/ui/CollectionCard";
 import { Link } from "react-router-dom";
 import { useState } from "react";
