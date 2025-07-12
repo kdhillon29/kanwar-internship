@@ -7,7 +7,15 @@ export default function Trending() {
   const { data: trending } = useFetchData("/api/trendingNFTs");
 
   return (
-    <section id="trending">
+    <section
+      id="trending"
+      data-aos="fade-up"
+      data-aos-offset="0"
+      data-aos-duration="500"
+      data-aos-easing="ease-in-out"
+      data-aos-once="false"
+      data-aos-anchor-placement="top-center"
+    >
       <div className="container">
         <div className="row trending__row">
           <div className="trending__header">
