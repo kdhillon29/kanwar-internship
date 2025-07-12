@@ -12,7 +12,7 @@ export default function CollectionsPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    //comment for merge
+    //merge comment main
   }, []);
   if (error) {
     return (
