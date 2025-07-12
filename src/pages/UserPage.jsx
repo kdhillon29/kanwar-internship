@@ -74,7 +74,9 @@ export default function UserPage() {
               )}
             </figure>
             {!userData?.name ? (
-              <Skeleton width="100%" height="100%" borderRadius="5px" />
+              <div style={{ width: "150px", margin: "5px  10px" }}>
+                <Skeleton width="100%" height="20px" borderRadius="10px" />
+              </div>
             ) : (
               <h1 className="user-info__name">{userData?.name}</h1>
             )}
@@ -86,7 +88,7 @@ export default function UserPage() {
                 />
                 <span className="user-info__wallet__data">
                   {!userData?.walletCode ? (
-                    <Skeleton width="50px" height="10px" borderRadius="5px" />
+                    <Skeleton width="200px" height="20px" borderRadius="10px" />
                   ) : (
                     userData?.walletCode
                   )}
@@ -95,7 +97,7 @@ export default function UserPage() {
               <span className="user-info__year">
                 <span className="user-info__year__data">
                   {!userData?.creationDate ? (
-                    <Skeleton width="50px" height="10px" borderRadius="5px" />
+                    <Skeleton width="100px" height="20px" borderRadius="10px" />
                   ) : (
                     "Joined " + userData?.creationDate
                   )}
@@ -128,7 +130,7 @@ export default function UserPage() {
                 <option value="Price low to high">Price low to high</option>
               </select>
             ) : (
-              <Skeleton width="100px" height="20px" borderRadius="5px" />
+              <Skeleton width="80px" height="20px" borderRadius="10px" />
             )}
           </div>
 
@@ -168,27 +170,25 @@ export default function UserPage() {
                       display: "flex",
                       flexDirection: "column",
                       gap: "16px",
+                      minWidth: "200px",
+
                       alignItems: "center",
+                      justifyContent: "center",
                     }}
                     className="item-column"
                     key={index}
                   >
-                    <Skeleton
-                      width="230px"
-                      height="250px"
-                      borderRadius="10px"
-                    />
+                    <Skeleton width="100%" height="260px" borderRadius="10px" />
                     <div
                       style={{
                         width: "100%",
                         display: "flex",
                         flexDirection: "column",
-                        gap: "20px",
+                        gap: "10px",
                       }}
                     >
-                      <Skeleton width="50%" height="10px" borderRadius="5px" />
-                      <Skeleton width="50%" height="10px" borderRadius="5px" />
-                      <Skeleton width="50%" height="10px" borderRadius="5px" />
+                      <Skeleton width="50%" height="10px" borderRadius="10px" />
+                      <Skeleton width="50%" height="10px" borderRadius="10px" />
                     </div>
                   </div>
                 ))}
