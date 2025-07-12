@@ -6,6 +6,9 @@ const useFetch = (url) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  if (import.meta.env.MODE !== "development") {
+    url = import.meta.env.VITE_API_URL + url;
+  }
   useEffect(() => {
     let isMounted = true; // To prevent state updates on unmounted components
 
