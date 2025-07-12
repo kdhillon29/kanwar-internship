@@ -9,7 +9,7 @@ export default function PopularCollections() {
   const { data: popularCollections } = useFetchData("/api/popularCollections");
 
   return popularCollections?.length > 0 ? (
-    <section id="popular-collections">
+    <section id="popular-collections" data-aos="fade-up">
       <div className="container">
         <div className="row">
           <h2 className="popular-collections__title">Popular Collections</h2>
@@ -34,7 +34,7 @@ export default function PopularCollections() {
       </div>
     </section>
   ) : (
-    <section id="popular-collections">
+    <section id="popular-collections" data-aos="fade-up">
       <div className="container">
         <div className="row">
           <h2 className="popular-collections__title">Popular Collections</h2>

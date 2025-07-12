@@ -9,7 +9,7 @@ export default function NewCollections() {
   const { data: newCollections } = useFetchData("/api/newCollections");
 
   return newCollections?.length > 0 ? (
-    <section id="new-collections">
+    <section id="new-collections" data-aos="fade-up">
       <div className="container">
         <div className="row">
           <h2 className="new-collections__title">New Collections</h2>
@@ -34,7 +34,7 @@ export default function NewCollections() {
       </div>
     </section>
   ) : (
-    <section id="new-collections">
+    <section id="new-collections" data-aos="fade-up">
       <div className="container">
         <div className="row">
           <h2 className="new-collections__title">New Collections</h2>

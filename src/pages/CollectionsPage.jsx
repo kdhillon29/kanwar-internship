@@ -11,6 +11,8 @@ export default function CollectionsPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    //comment for merge
   }, []);
   if (error) {
     return (
