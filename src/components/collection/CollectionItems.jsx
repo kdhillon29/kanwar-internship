@@ -99,11 +99,11 @@ export default function CollectionItems({ itemsData }) {
               }}
             >
               <div style={{ display: "flex", width: "50%", gap: "10px" }}>
-                <Skeleton width="10%" height="12px" borderRadius="10px" />
-                <Skeleton width="10%" height="12px" borderRadius="10px" />
+                <Skeleton width="15%" height="15px" borderRadius="10px" />
+                <Skeleton width="15%" height="15px" borderRadius="10px" />
               </div>
 
-              <Skeleton width=" 20%" height="30px" borderRadius="5px" />
+              <Skeleton width=" 20%" height="30px" borderRadius="10px" />
             </div>
 
             <div className="collection-items__body">
