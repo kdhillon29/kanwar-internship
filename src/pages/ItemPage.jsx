@@ -17,8 +17,8 @@ import { useState } from "react";
 export default function ItemPage() {
   const { id } = useParams();
   const { data: itemData, error } = useFetchData(`/api/Item/${id}`);
-  const [expiryDateCountdown, setExpiryDateCountdown] = useState("");
-  const [item, setItem] = useState(null);
+  const [item, setItem] = useState(itemData);
+  const [expiryDateCountdown, setExpiryDateCountdown] = useState(null);
 
   function getExpiryDateCountdown() {
     const date = new Date(item?.expiryDate);
@@ -41,7 +41,7 @@ export default function ItemPage() {
     if (seconds > 0) {
       expiryDateString += `${seconds}s`;
     }
-    return expiryDateString;
+    setExpiryDateCountdown(expiryDateString);
   }
 
   useEffect(() => {
@@ -50,8 +50,9 @@ export default function ItemPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    getExpiryDateCountdown();
     const interval = setInterval(() => {
-      setExpiryDateCountdown(getExpiryDateCountdown());
+      getExpiryDateCountdown();
     }, 1000);
     return () => clearInterval(interval);
   }, [id, item]);
@@ -196,16 +197,16 @@ export default function ItemPage() {
                         className="item-page__img__icon"
                       />
                       <div className="item-page__img__likes">
-                        <FontAwesomeIcon
+                        {/* <FontAwesomeIcon
                           icon={faHeart}
                           className="item-page__img__icon"
-                        />
+                        /> */}
                         <span className="item-page__img__likes__text">
-                          <Skeleton width={50} height={20} />
+                          <Skeleton width={50} height={15} borderRadius={10} />
                         </span>
                       </div>
                     </div>
-                    <Skeleton width={400} height={400} />
+                    <Skeleton width={"100%"} height={"100%"} />
                   </figure>
                 </div>
                 <div className="item-page__right">
@@ -213,75 +214,56 @@ export default function ItemPage() {
                     to={`/collection/${item?.collectionId}`}
                     className="item-page__collection light-blue"
                   >
-                    <Skeleton width={100} height={20} />
+                    <Skeleton width={100} height={15} borderRadius={10} />
                   </Link>
                   <h1 className="item-page__name">
-                    <Skeleton width={100} height={20} />
+                    <Skeleton width={100} height={15} borderRadius={10} />
                   </h1>
-                  <span className="item-page__owner">
-                    <Skeleton width={50} height={20} />
-                    <Skeleton width={50} height={20} />
+                  <span
+                    style={{ display: "flex", gap: "12px" }}
+                    className="item-page__owner"
+                  >
+                    <Skeleton width={80} height={15} borderRadius={10} />
+                    <Skeleton width={80} height={15} borderRadius={10} />
                   </span>
                   <div className="item-page__details">
                     <div className="item-page__detail">
-                      <FontAwesomeIcon
-                        icon={faEye}
-                        className="item-page__detail__icon"
-                      />
                       <span className="item-page__detail__text">
-                        <Skeleton width={50} height={20} />
+                        <Skeleton width={80} height={15} borderRadius={10} />
                       </span>
                     </div>
                     <div className="item-page__detail">
-                      <FontAwesomeIcon
-                        icon={faHeart}
-                        className="item-page__detail__icon"
-                      />
                       <span className="item-page__detail__text">
-                        <Skeleton width={50} height={20} />
+                        <Skeleton width={80} height={15} borderRadius={10} />
                       </span>
                     </div>
                     <div className="item-page__detail">
-                      <FontAwesomeIcon
-                        icon={faShapes}
-                        className="item-page__detail__icon"
-                      />
                       <span className="item-page__detail__text">
-                        <Skeleton width={50} height={20} />
+                        <Skeleton width={50} height={15} borderRadius={10} />
                       </span>
                     </div>
                   </div>
                   <div className="item-page__sale">
                     <div className="item-page__sale__header">
-                      <div className="green-pulse"></div>
-                      <span
-                        style={{
-                          marginTop: "10px",
-                          display: "flex",
-                          gap: "10px",
-                        }}
-                      >
-                        <Skeleton width={60} height={20} borderRadius={10} />
-                        <Skeleton width={60} height={20} borderRadius={10} />
-                      </span>
+                      <Skeleton width={150} height={15} borderRadius={10} />
                     </div>
                     <div className="item-page__sale__body">
                       <span className="item-page__sale__label">
-                        <Skeleton width={100} height={20} borderRadius={10} />
+                        <Skeleton width={100} height={15} borderRadius={10} />
                       </span>
                       <div
                         style={{ marginTop: "10px" }}
                         className="item-page__sale__price"
                       >
-                        <Skeleton width={50} height={20} borderRadius={10} />
-                        <Skeleton width={50} height={20} borderRadius={10} />
+                        <Skeleton width={80} height={15} borderRadius={10} />
+                        <Skeleton width={80} height={15} borderRadius={10} />
                       </div>
                       <div
                         style={{ marginTop: "10px" }}
                         className="item-page__sale__buttons"
                       >
-                        <Skeleton width="80%" height={50} borderRadius={10} />
-                        <Skeleton width="80%" height={50} borderRadius={10} />
+                        <Skeleton width="80%" height={50} borderRadius={15} />
+                        <Skeleton width="80%" height={50} borderRadius={15} />
                       </div>
                     </div>
                   </div>
